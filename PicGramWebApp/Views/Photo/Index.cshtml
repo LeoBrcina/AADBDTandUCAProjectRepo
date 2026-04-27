@@ -1,0 +1,45 @@
+﻿@model List<PicGramWebApp.Models.Photo>
+
+@{
+    ViewData["Title"] = "Latest Photos";
+}
+
+<h2>Latest Photos</h2>
+
+@if (!Model.Any())
+{
+    <p>No photos uploaded yet.</p>
+}
+else
+{
+    <div class="row">
+        @foreach (var photo in Model)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <a asp-controller="Photo" asp-action="Details" asp-route-id="@photo.Id">
+                        <img src="@photo.FilePath" class="card-img-top" style="height: 250px; object-fit: cover;" alt="Photo" />
+                    </a>
+                    <a asp-controller="Photo" asp-action="Download" asp-route-id="@photo.Id" class="btn btn-success btn-sm">
+                        Download
+                    </a>
+                    <a asp-controller="Photo" asp-action="DownloadOptions" asp-route-id="@photo.Id" class="btn btn-primary btn-sm">
+                        Processed Download
+                    </a>
+                    <div class="card-body">
+                        <p class="card-text"><strong>Description:</strong> @photo.Description</p>
+                        <p class="card-text"><strong>Author:</strong> @photo.User?.Email</p>
+                        <p class="card-text"><strong>Uploaded:</strong> @photo.UploadedAt.ToString("dd.MM.yyyy. HH:mm")</p>
+                        @if (photo.PhotoHashtags != null && photo.PhotoHashtags.Any())
+                        {
+                            <p class="card-text">
+                                <strong>Hashtags:</strong>
+                                @string.Join(", ", photo.PhotoHashtags.Select(ph => "#" + ph.Hashtag!.Name))
+                            </p>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}

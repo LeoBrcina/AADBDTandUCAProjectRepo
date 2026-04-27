@@ -1,0 +1,73 @@
+﻿@model List<PicGramWebApp.Models.Photo>
+
+@{
+    ViewData["Title"] = "Search Photos";
+}
+
+<h2>Search Photos</h2>
+
+<form method="get" asp-action="Search" class="mb-4">
+    <div class="row">
+        <div class="col-md-4 mb-3">
+            <input type="text" name="hashtag" class="form-control" placeholder="Hashtag" value="@Context.Request.Query["hashtag"]" />
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <input type="text" name="author" class="form-control" placeholder="Author email" value="@Context.Request.Query["author"]" />
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <input type="date" name="fromDate" class="form-control" value="@Context.Request.Query["fromDate"]" />
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <input type="date" name="toDate" class="form-control" value="@Context.Request.Query["toDate"]" />
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <input type="number" name="minSize" class="form-control" placeholder="Min size (bytes)" value="@Context.Request.Query["minSize"]" />
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <input type="number" name="maxSize" class="form-control" placeholder="Max size (bytes)" value="@Context.Request.Query["maxSize"]" />
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Search</button>
+    <a asp-action="Search" class="btn btn-secondary">Reset</a>
+</form>
+
+@if (!Model.Any())
+{
+    <p>No photos found.</p>
+}
+else
+{
+    <div class="row">
+        @foreach (var photo in Model)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <a asp-controller="Photo" asp-action="Details" asp-route-id="@photo.Id">
+                        <img src="@photo.FilePath" class="card-img-top" style="height: 250px; object-fit: cover;" alt="Photo" />
+                    </a>
+
+                    <div class="card-body">
+                        <p><strong>Description:</strong> @photo.Description</p>
+                        <p><strong>Author:</strong> @photo.User?.Email</p>
+                        <p><strong>Uploaded:</strong> @photo.UploadedAt.ToString("dd.MM.yyyy. HH:mm")</p>
+                        <p><strong>Size:</strong> @photo.FileSize bytes</p>
+
+                        @if (photo.PhotoHashtags != null && photo.PhotoHashtags.Any())
+                        {
+                            <p>
+                                <strong>Hashtags:</strong>
+                                @string.Join(", ", photo.PhotoHashtags.Select(ph => "#" + ph.Hashtag!.Name))
+                            </p>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}

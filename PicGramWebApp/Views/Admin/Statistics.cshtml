@@ -1,0 +1,38 @@
+﻿@model List<PicGramWebApp.Models.ViewModels.UserStatisticsViewModel>
+
+@{
+    ViewData["Title"] = "User Statistics";
+}
+
+<h2>User Statistics</h2>
+
+@if (!Model.Any())
+{
+    <p>No users found.</p>
+}
+else
+{
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Email</th>
+                <th>Package</th>
+                <th>Total Photos</th>
+                <th>Total Actions</th>
+                <th>Last Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var stat in Model)
+            {
+                <tr>
+                    <td>@stat.Email</td>
+                    <td>@stat.PackageName</td>
+                    <td>@stat.PhotoCount</td>
+                    <td>@stat.ActionCount</td>
+                    <td>@(stat.LastActionAt?.ToString("dd.MM.yyyy. HH:mm:ss") ?? "No actions")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

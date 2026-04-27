@@ -1,0 +1,30 @@
+﻿@model PicGramWebApp.Models.ViewModels.PackageChangeViewModel
+
+@{
+    ViewData["Title"] = "Change Package";
+}
+
+<h2>Change Package</h2>
+
+@if (!string.IsNullOrWhiteSpace(Model.Message))
+{
+    <div class="alert alert-danger">
+        @Model.Message
+    </div>
+}
+
+<div class="card mb-3">
+    <div class="card-body">
+        <p><strong>Current Package:</strong> @Model.CurrentPackageName</p>
+    </div>
+</div>
+
+<form asp-action="Change" method="post">
+    <div class="mb-3">
+        <label class="form-label">Choose New Package</label>
+        <select asp-for="RequestedPackagePlanId" asp-items="Model.AvailablePackages" class="form-select"></select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit Change Request</button>
+    <a asp-controller="Package" asp-action="Usage" class="btn btn-secondary">Back</a>
+</form>

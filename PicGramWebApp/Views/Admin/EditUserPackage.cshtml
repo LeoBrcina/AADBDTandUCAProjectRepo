@@ -1,0 +1,24 @@
+﻿@model PicGramWebApp.Models.ApplicationUser
+
+@{
+    ViewData["Title"] = "Edit User Package";
+}
+
+<h2>Edit User Package</h2>
+
+<form asp-action="EditUserPackage" method="post">
+    <input type="hidden" name="id" value="@Model.Id" />
+
+    <div class="mb-3">
+        <label class="form-label">User Email</label>
+        <input type="text" class="form-control" value="@Model.Email" readonly />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Package</label>
+        <select name="packagePlanId" class="form-select" asp-items="ViewBag.PackagePlans"></select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a asp-controller="Admin" asp-action="Users" class="btn btn-secondary">Back</a>
+</form>

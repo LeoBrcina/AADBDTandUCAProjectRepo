@@ -1,0 +1,36 @@
+﻿@model List<PicGramWebApp.Models.Photo>
+
+<h2>My Photos</h2>
+
+@if (!Model.Any())
+{
+    <p>You have not uploaded any photos yet.</p>
+}
+else
+{
+    @foreach (var photo in Model)
+    {
+        <div class="mb-4">
+            <img src="@photo.FilePath" width="200" />
+            <p>@photo.Description</p>
+
+            @if (photo.PhotoHashtags != null && photo.PhotoHashtags.Any())
+            {
+                <p>
+                    <strong>Hashtags:</strong>
+                    @string.Join(", ", photo.PhotoHashtags.Select(ph => "#" + ph.Hashtag!.Name))
+                </p>
+            }
+
+            <a asp-controller="Photo" asp-action="Download" asp-route-id="@photo.Id" class="btn btn-success btn-sm">
+                Download
+            </a>
+            <a asp-controller="Photo" asp-action="DownloadOptions" asp-route-id="@photo.Id" class="btn btn-primary btn-sm">
+                Processed Download
+            </a>
+            <a asp-controller="Photo" asp-action="Edit" asp-route-id="@photo.Id" class="btn btn-warning btn-sm">
+                Edit
+            </a>
+        </div>
+    }
+}

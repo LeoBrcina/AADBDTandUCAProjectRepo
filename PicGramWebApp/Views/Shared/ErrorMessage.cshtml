@@ -1,0 +1,13 @@
+﻿@{
+    ViewData["Title"] = "Action Not Allowed";
+}
+
+<div class="container mt-4">
+    <div class="alert alert-danger">
+        <h4 class="alert-heading">Action not allowed</h4>
+        <p>@ViewBag.ErrorMessage</p>
+        <hr />
+        <a asp-controller="Home" asp-action="Index" class="btn btn-primary">Go Home</a>
+        <a href="javascript:history.back()" class="btn btn-secondary">Go Back</a>
+    </div>
+</div>

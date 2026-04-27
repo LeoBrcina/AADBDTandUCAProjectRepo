@@ -1,0 +1,29 @@
+﻿@model PicGramWebApp.Models.ViewModels.PackageUsageViewModel
+
+@{
+    ViewData["Title"] = "My Package Usage";
+}
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
+<h2>My Package Usage</h2>
+
+<div class="card">
+    <div class="card-body">
+        <p><strong>Email:</strong> @Model.Email</p>
+        <p><strong>Current Package:</strong> @Model.PackageName</p>
+        <p><strong>Price:</strong> @Model.PackagePrice</p>
+
+        <hr />
+
+        <p><strong>Uploaded Photos:</strong> @Model.UploadedPhotos / @Model.MaxUploadsPerMonth</p>
+        <p><strong>Storage Used:</strong> @Model.UsedStorageBytes bytes / @Model.MaxStorageBytes bytes</p>
+        <p><strong>Downloads:</strong> @Model.DownloadCount / @Model.MaxDownloadsPerMonth</p>
+        <a asp-controller="Package" asp-action="Change" class="btn btn-warning mt-3">Change Package</a>
+    </div>
+</div>

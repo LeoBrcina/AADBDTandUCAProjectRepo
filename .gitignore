@@ -1,0 +1,33 @@
+# Build results
+[Bb]in/
+[Oo]bj/
+
+# Visual Studio
+.vs/
+*.user
+*.rsuser
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Rider / VS Code
+.idea/
+.vscode/
+
+# ASP.NET local settings
+appsettings.Development.json
+
+# Runtime uploaded files
+PicGramWebApp/wwwroot/uploads/
+
+# Logs
+*.log
+logs/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Visual Studio service dependencies
+PicGramWebApp/Properties/serviceDependencies.json
+PicGramWebApp/Properties/serviceDependencies.local.json

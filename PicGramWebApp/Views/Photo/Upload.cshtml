@@ -1,0 +1,28 @@
+﻿@{
+    ViewData["Title"] = "Upload Photo";
+}
+
+<h2>Upload Photo</h2>
+
+@if (ViewBag.ErrorMessage != null)
+{
+    <div class="alert alert-danger">
+        @ViewBag.ErrorMessage
+    </div>
+}
+
+<form asp-action="Upload" method="post" enctype="multipart/form-data">
+    <div class="mb-3">
+        <input type="file" name="file" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <input type="text" name="description" class="form-control" placeholder="Description" />
+    </div>
+
+    <div class="mb-3">
+        <input type="text" name="hashtags" class="form-control" placeholder="Hashtags (comma separated, e.g. f1, racing, mercedes)" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Upload</button>
+</form>

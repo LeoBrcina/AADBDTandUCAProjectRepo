@@ -1,0 +1,40 @@
+﻿@model List<PicGramWebApp.Models.ApplicationUser>
+
+@{
+    ViewData["Title"] = "Manage Users";
+}
+
+<h2>Manage Users</h2>
+
+@if (!Model.Any())
+{
+    <p>No users found.</p>
+}
+else
+{
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Email</th>
+                <th>Package</th>
+                <th>User Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model)
+            {
+                <tr>
+                    <td>@user.Email</td>
+                    <td>@(user.PackagePlan?.Name ?? "None")</td>
+                    <td>@user.Id</td>
+                    <td>
+                        <a asp-controller="Admin" asp-action="EditUserPackage" asp-route-id="@user.Id" class="btn btn-warning btn-sm">
+                            Edit Package
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
