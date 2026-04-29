@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PicGramWebApp.Tests", "PicG
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PicGramWebApp.IntegrationTests", "PicGramWebApp.IntegrationTests\PicGramWebApp.IntegrationTests.csproj", "{778F617E-3D04-4A20-AF49-727A3AB284FA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PicGramWebApp.UiTests", "PicGramWebApp.UiTests\PicGramWebApp.UiTests.csproj", "{58AF4BD0-34C4-4189-8780-EF677B707888}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +57,18 @@ Global
 		{778F617E-3D04-4A20-AF49-727A3AB284FA}.Release|x64.Build.0 = Release|Any CPU
 		{778F617E-3D04-4A20-AF49-727A3AB284FA}.Release|x86.ActiveCfg = Release|Any CPU
 		{778F617E-3D04-4A20-AF49-727A3AB284FA}.Release|x86.Build.0 = Release|Any CPU
+		{58AF4BD0-34C4-4189-8780-EF677B707888}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58AF4BD0-34C4-4189-8780-EF677B707888}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58AF4BD0-34C4-4189-8780-EF677B707888}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{58AF4BD0-34C4-4189-8780-EF677B707888}.Debug|x64.Build.0 = Debug|Any CPU
+		{58AF4BD0-34C4-4189-8780-EF677B707888}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{58AF4BD0-34C4-4189-8780-EF677B707888}.Debug|x86.Build.0 = Debug|Any CPU
+		{58AF4BD0-34C4-4189-8780-EF677B707888}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58AF4BD0-34C4-4189-8780-EF677B707888}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58AF4BD0-34C4-4189-8780-EF677B707888}.Release|x64.ActiveCfg = Release|Any CPU
+		{58AF4BD0-34C4-4189-8780-EF677B707888}.Release|x64.Build.0 = Release|Any CPU
+		{58AF4BD0-34C4-4189-8780-EF677B707888}.Release|x86.ActiveCfg = Release|Any CPU
+		{58AF4BD0-34C4-4189-8780-EF677B707888}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
