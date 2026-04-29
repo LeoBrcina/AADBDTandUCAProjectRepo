@@ -5,6 +5,7 @@ using PicGramWebApp.Models;
 using PicGramWebApp.Services.Adapters;
 using PicGramWebApp.Services.Facade;
 using PicGramWebApp.Services.Logging;
+using PicGramWebApp.Services.Metrics;
 using PicGramWebApp.Services.Observers;
 using PicGramWebApp.Services.Packages;
 using PicGramWebApp.Services.Search;
@@ -45,6 +46,7 @@ builder.Services.AddScoped<AppActionLogger>();
 builder.Services.AddScoped<PackageChangeService>();
 builder.Services.AddScoped<IExternalUserAdapter, GitHubExternalUserAdapter>();
 builder.Services.AddScoped<IPhotoSearchService, PhotoSearchService>();
+builder.Services.AddSingleton<AppMetrics>();
 
 var app = builder.Build();
 

@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using PicGramWebApp.Data;
+using PicGramWebApp.Filters;
 using PicGramWebApp.Models;
 using PicGramWebApp.Models.ViewModels;
 using PicGramWebApp.Services.Commands;
@@ -167,6 +168,7 @@ namespace PicGramWebApp.Controllers
             return RedirectToAction("Photos");
         }
 
+        [ExecutionTimeAspect]
         public IActionResult Statistics()
         {
             var users = _userManager.Users

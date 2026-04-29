@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PicGramWebApp.Data;
+using PicGramWebApp.Filters;
 using PicGramWebApp.Models;
 using PicGramWebApp.Services.Facade;
 using PicGramWebApp.Services.ImageProcessing;
@@ -44,6 +45,7 @@ namespace PicGramWebApp.Controllers
         }
 
         [AllowAnonymous]
+        [ExecutionTimeAspect]
         public IActionResult Search(string hashtag, string author, DateTime? fromDate, DateTime? toDate, long? minSize, long? maxSize)
         {
             var criteria = new PhotoSearchCriteriaBuilder()
@@ -60,6 +62,7 @@ namespace PicGramWebApp.Controllers
             return View(photos);
         }
 
+        [ExecutionTimeAspect]
         public IActionResult Upload()
         {
             return View();
@@ -111,6 +114,7 @@ namespace PicGramWebApp.Controllers
         }
 
         [Authorize]
+        [ExecutionTimeAspect]
         public async Task<IActionResult> Download(int id)
         {
             var photo = _context.Photos.FirstOrDefault(p => p.Id == id);
@@ -148,6 +152,7 @@ namespace PicGramWebApp.Controllers
         }
 
         [Authorize]
+        [ExecutionTimeAspect]
         public async Task<IActionResult> DownloadProcessed(
             int id,
             int? width,
