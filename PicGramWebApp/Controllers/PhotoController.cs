@@ -46,6 +46,7 @@ namespace PicGramWebApp.Controllers
 
         [AllowAnonymous]
         [ExecutionTimeAspect]
+        [ActionCounterAspect]
         public IActionResult Search(string hashtag, string author, DateTime? fromDate, DateTime? toDate, long? minSize, long? maxSize)
         {
             var criteria = new PhotoSearchCriteriaBuilder()
@@ -63,6 +64,7 @@ namespace PicGramWebApp.Controllers
         }
 
         [ExecutionTimeAspect]
+        [ActionCounterAspect]
         public IActionResult Upload()
         {
             return View();
@@ -115,6 +117,7 @@ namespace PicGramWebApp.Controllers
 
         [Authorize]
         [ExecutionTimeAspect]
+        [ActionCounterAspect]
         public async Task<IActionResult> Download(int id)
         {
             var photo = _context.Photos.FirstOrDefault(p => p.Id == id);
@@ -153,6 +156,7 @@ namespace PicGramWebApp.Controllers
 
         [Authorize]
         [ExecutionTimeAspect]
+        [ActionCounterAspect]
         public async Task<IActionResult> DownloadProcessed(
             int id,
             int? width,

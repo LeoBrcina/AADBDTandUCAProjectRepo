@@ -169,6 +169,7 @@ namespace PicGramWebApp.Controllers
         }
 
         [ExecutionTimeAspect]
+        [ActionCounterAspect]
         public IActionResult Statistics()
         {
             var users = _userManager.Users
