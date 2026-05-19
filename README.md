@@ -1,9 +1,9 @@
-# PicGramWebApp — AADBDT + APP Project
+# PicGramWebApp â€” AADBDT + APP Project
 
 PicGramWebApp is an ASP.NET Core MVC photo-sharing web application created for two connected university projects:
 
-- **Project 1 — Advanced Application Development Based on Development Templates (AADBDT)**
-- **Project 2 — Advanced Programming Paradigms (APP)**
+- **Project 1 â€” Advanced Application Development Based on Development Templates (AADBDT)**
+- **Project 2 â€” Advanced Programming Paradigms (APP)**
 
 The first project focuses on building the core photo-sharing application and demonstrating design patterns.  
 The second project improves the same application by adding automated testing, functional programming examples, aspect-oriented programming, metrics, monitoring, Git workflow, refactoring/SOLID examples, and Docker containerization.
@@ -90,7 +90,7 @@ PicGram/
 
 ---
 
-# Project 1 — AADBDT
+# Project 1 â€” AADBDT
 
 ## User Types
 
@@ -367,7 +367,7 @@ The GitHub external login adapter converts provider-specific login data into a u
 
 ---
 
-# Project 2 — Advanced Programming Paradigms Improvements
+# Project 2 â€” Advanced Programming Paradigms Improvements
 
 Project 2 improves the original AADBDT project by adding testing, AOP, functional programming, metrics, Docker, Git workflow, and refactoring/SOLID examples.
 
@@ -849,37 +849,3 @@ project-1-final
 Marks the final Project 1 version before Project 2 improvements.
 
 This workflow keeps the original Project 1 solution stable while Project 2 improvements are developed separately.
-
----
-
-# Known Limitations and Future Improvements
-
-The application is functional and satisfies the main project goals, but possible future improvements include:
-
-- Add Google OAuth alongside GitHub login
-- Add real cloud storage provider such as Amazon S3
-- Add pre-save image processing options during upload
-- Add a richer visual dashboard for metrics
-- Make Playwright UI tests start the web app automatically
-- Make integration tests fully independent of LocalDB by overriding the database provider
-- Replace hardcoded demo admin email with configuration
-- Use Docker secrets or environment secret management for production credentials
-- Add CI/CD pipeline with automated test execution
-
----
-
-# Defense Summary
-
-PicGramWebApp demonstrates a complete ASP.NET Core MVC photo-sharing application with authentication, roles, package limits, photo upload, search, download, image processing, admin management, logging, and multiple design patterns.
-
-The Project 2 improvements make the application more maintainable and professional by adding:
-
-- Unit, integration, and UI tests
-- Functional programming helpers used in production code
-- AOP-style metrics collection
-- Health and metrics monitoring endpoints
-- Git workflow with branches and tag
-- SOLID/refactoring examples
-- Dockerized app and SQL Server environment
-
-The result is a more testable, observable, maintainable, and portable version of the original Project 1 application.
