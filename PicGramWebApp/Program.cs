@@ -83,6 +83,8 @@ using (var scope = app.Services.CreateScope())
     var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
     var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
 
+    db.Database.Migrate();
+
     // 1. Seed packages
     if (!db.PackagePlans.Any())
     {
