@@ -8,6 +8,8 @@
 
         public int UploadedPhotos { get; set; }
         public long UsedStorageBytes { get; set; }
+        public long RemainingStorageBytes { get; set; }
+        public double StorageUsagePercentage { get; set; }
         public int DownloadCount { get; set; }
 
         public int MaxUploadsPerMonth { get; set; }

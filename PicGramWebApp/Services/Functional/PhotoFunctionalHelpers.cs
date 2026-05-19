@@ -9,14 +9,13 @@ public static class PhotoFunctionalHelpers
             return null;
         }
 
-        var trimmed = hashtag.Trim();
+        var normalized = hashtag
+            .Trim()
+            .TrimStart('#')
+            .Trim()
+            .ToLowerInvariant();
 
-        if (trimmed.StartsWith("#"))
-        {
-            trimmed = trimmed[1..];
-        }
-
-        return string.IsNullOrWhiteSpace(trimmed) ? null : trimmed;
+        return string.IsNullOrWhiteSpace(normalized) ? null : normalized;
     }
 
     public static string? NormalizeAuthor(string? author)

@@ -22,8 +22,24 @@
         <hr />
 
         <p><strong>Uploaded Photos:</strong> @Model.UploadedPhotos / @Model.MaxUploadsPerMonth</p>
-        <p><strong>Storage Used:</strong> @Model.UsedStorageBytes bytes / @Model.MaxStorageBytes bytes</p>
+
+        <p>
+            <strong>Storage Used:</strong>
+            @Model.UsedStorageBytes bytes / @Model.MaxStorageBytes bytes
+        </p>
+
+        <p>
+            <strong>Storage Usage:</strong>
+            @Model.StorageUsagePercentage%
+        </p>
+
+        <p>
+            <strong>Remaining Storage:</strong>
+            @Model.RemainingStorageBytes bytes
+        </p>
+
         <p><strong>Downloads:</strong> @Model.DownloadCount / @Model.MaxDownloadsPerMonth</p>
+
         <a asp-controller="Package" asp-action="Change" class="btn btn-warning mt-3">Change Package</a>
     </div>
 </div>

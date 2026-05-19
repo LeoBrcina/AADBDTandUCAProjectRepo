@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PicGramWebApp.Data;
 using PicGramWebApp.Models;
+using PicGramWebApp.Services.Functional;
 
 namespace PicGramWebApp.Services.Search
 {
@@ -21,16 +22,23 @@ namespace PicGramWebApp.Services.Search
                     .ThenInclude(ph => ph.Hashtag)
                 .AsQueryable();
 
-            if (!string.IsNullOrWhiteSpace(criteria.Hashtag))
+            var normalizedHashtag = PhotoFunctionalHelpers.NormalizeHashtag(criteria.Hashtag);
+
+            if (!string.IsNullOrWhiteSpace(normalizedHashtag))
             {
-                var normalizedHashtag = criteria.Hashtag.Trim().TrimStart('#').ToLower();
-                query = query.Where(p => p.PhotoHashtags.Any(ph => ph.Hashtag!.Name.ToLower().Contains(normalizedHashtag)));
+                query = query.Where(p =>
+                    p.PhotoHashtags.Any(ph =>
+                        ph.Hashtag!.Name.ToLower().Contains(normalizedHashtag)));
             }
 
-            if (!string.IsNullOrWhiteSpace(criteria.Author))
+            var normalizedAuthor = PhotoFunctionalHelpers.NormalizeAuthor(criteria.Author);
+
+            if (!string.IsNullOrWhiteSpace(normalizedAuthor))
             {
-                var normalizedAuthor = criteria.Author.Trim().ToLower();
-                query = query.Where(p => p.User!.Email!.ToLower().Contains(normalizedAuthor));
+                var authorSearch = normalizedAuthor.ToLowerInvariant();
+
+                query = query.Where(p =>
+                    p.User!.Email!.ToLower().Contains(authorSearch));
             }
 
             if (criteria.FromDate.HasValue)

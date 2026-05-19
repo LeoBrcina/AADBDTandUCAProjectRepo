@@ -7,6 +7,7 @@ using PicGramWebApp.Data;
 using PicGramWebApp.Models;
 using PicGramWebApp.Models.ViewModels;
 using PicGramWebApp.Services.Commands;
+using PicGramWebApp.Services.Functional;
 using PicGramWebApp.Services.Logging;
 using PicGramWebApp.Services.Packages;
 
@@ -49,6 +50,11 @@ namespace PicGramWebApp.Controllers
                 .Include(u => u.PackagePlan)
                 .FirstOrDefaultAsync(u => u.Id == user.Id);
 
+            if (user == null)
+            {
+                return NotFound();
+            }
+
             var startOfMonth = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
 
             var uploadedPhotos = _context.Photos.Count(p =>
@@ -65,6 +71,8 @@ namespace PicGramWebApp.Controllers
                 l.CreatedAt >= startOfMonth &&
                 (l.ActionType == "DownloadOriginal" || l.ActionType == "DownloadProcessed"));
 
+            var maxStorageBytes = user.PackagePlan?.MaxStorageBytes ?? 0;
+
             var model = new PackageUsageViewModel
             {
                 Email = user.Email ?? "",
@@ -72,9 +80,15 @@ namespace PicGramWebApp.Controllers
                 PackagePrice = user.PackagePlan?.Price ?? 0,
                 UploadedPhotos = uploadedPhotos,
                 UsedStorageBytes = usedStorageBytes,
+                RemainingStorageBytes = PhotoFunctionalHelpers.CalculateRemainingStorageBytes(
+                    usedStorageBytes,
+                    maxStorageBytes),
+                StorageUsagePercentage = PhotoFunctionalHelpers.CalculateStorageUsagePercentage(
+                    usedStorageBytes,
+                    maxStorageBytes),
                 DownloadCount = downloadCount,
                 MaxUploadsPerMonth = user.PackagePlan?.MaxUploadsPerMonth ?? 0,
-                MaxStorageBytes = user.PackagePlan?.MaxStorageBytes ?? 0,
+                MaxStorageBytes = maxStorageBytes,
                 MaxDownloadsPerMonth = user.PackagePlan?.MaxDownloadsPerMonth ?? 0
             };
 
@@ -97,6 +111,11 @@ namespace PicGramWebApp.Controllers
             user = await _userManager.Users
                 .Include(u => u.PackagePlan)
                 .FirstOrDefaultAsync(u => u.Id == user.Id);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
 
             var model = new PackageChangeViewModel
             {

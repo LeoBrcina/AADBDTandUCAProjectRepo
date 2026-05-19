@@ -6,6 +6,7 @@ using PicGramWebApp.Data;
 using PicGramWebApp.Filters;
 using PicGramWebApp.Models;
 using PicGramWebApp.Services.Facade;
+using PicGramWebApp.Services.Functional;
 using PicGramWebApp.Services.ImageProcessing;
 using PicGramWebApp.Services.Logging;
 using PicGramWebApp.Services.Packages;
@@ -224,8 +225,9 @@ namespace PicGramWebApp.Controllers
             }
 
             var ms = new MemoryStream();
+            var normalizedFormat = PhotoFunctionalHelpers.NormalizeOutputFormat(format);
 
-            switch (format?.ToLower())
+            switch (normalizedFormat)
             {
                 case "png":
                     await image.SaveAsPngAsync(ms);
@@ -235,22 +237,21 @@ namespace PicGramWebApp.Controllers
                     break;
                 default:
                     await image.SaveAsJpegAsync(ms);
-                    format = "jpg";
                     break;
             }
 
             ms.Position = 0;
 
-            await LogAction("DownloadProcessed", $"PhotoId={photo.Id}, Format={format}");
+            await LogAction("DownloadProcessed", $"PhotoId={photo.Id}, Format={normalizedFormat}");
 
-            var contentType = format?.ToLower() switch
+            var contentType = normalizedFormat switch
             {
                 "png" => "image/png",
                 "bmp" => "image/bmp",
                 _ => "image/jpeg"
             };
 
-            return File(ms, contentType, $"processed_{Path.GetFileNameWithoutExtension(photo.FileName)}.{format}");
+            return File(ms, contentType, $"processed_{Path.GetFileNameWithoutExtension(photo.FileName)}.{normalizedFormat}");
         }
 
         [AllowAnonymous]

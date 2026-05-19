@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using PicGramWebApp.Data;
 using PicGramWebApp.Models;
+using PicGramWebApp.Services.Functional;
 using PicGramWebApp.Services.Observers;
 using PicGramWebApp.Services.Packages;
 using PicGramWebApp.Services.Storage;
@@ -103,7 +104,8 @@ namespace PicGramWebApp.Services.Facade
 
             var hashtagList = hashtags
                 .Split(',', StringSplitOptions.RemoveEmptyEntries)
-                .Select(h => h.Trim().TrimStart('#').ToLower())
+                .Select(PhotoFunctionalHelpers.NormalizeHashtag)
+                .OfType<string>()
                 .Distinct()
                 .ToList();
 

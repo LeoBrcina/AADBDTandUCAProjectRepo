@@ -13,6 +13,14 @@ public class PhotoFunctionalHelpersTests
     }
 
     [Fact]
+    public void NormalizeHashtag_ConvertsValueToLowercase()
+    {
+        var result = PhotoFunctionalHelpers.NormalizeHashtag("  #FormulaOne  ");
+
+        Assert.Equal("formulaone", result);
+    }
+
+    [Fact]
     public void NormalizeHashtag_WhenInputIsEmpty_ReturnsNull()
     {
         var result = PhotoFunctionalHelpers.NormalizeHashtag("   ");
@@ -32,6 +40,14 @@ public class PhotoFunctionalHelpersTests
     public void NormalizeOutputFormat_WhenUnknownFormat_ReturnsJpg()
     {
         var result = PhotoFunctionalHelpers.NormalizeOutputFormat("tiff");
+
+        Assert.Equal("jpg", result);
+    }
+
+    [Fact]
+    public void NormalizeOutputFormat_WhenJpegFormat_ReturnsJpg()
+    {
+        var result = PhotoFunctionalHelpers.NormalizeOutputFormat("jpeg");
 
         Assert.Equal("jpg", result);
     }
