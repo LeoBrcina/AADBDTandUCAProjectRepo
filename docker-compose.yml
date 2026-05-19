@@ -25,6 +25,9 @@ services:
       ConnectionStrings__DefaultConnection: "Server=sqlserver;Database=PicGramDb;User Id=sa;Password=Your_password123;TrustServerCertificate=True;MultipleActiveResultSets=true"
     ports:
       - "8080:8080"
+    volumes:
+      - uploads_data:/app/wwwroot/uploads
 
 volumes:
   sqlserver_data:
+  uploads_data:
